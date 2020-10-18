@@ -1,0 +1,50 @@
+<form [formGroup]= "myForm" [hidden]="success" (ngSubmit)="submitHandler()">
+
+  Value: {{ myForm.value | json }}
+
+  <hr>
+  <mat-form-field class = 'forms'>
+    
+    <input matInput placeholder="name" formControlName="name"/>
+    <mat-hint align="end"> Type your own name</mat-hint>
+
+  </mat-form-field>
+
+  <mat-form-field class='forms'>
+    <input matInput placeholder="email" formControlName="email">
+    
+    <mat-error *ngIf="email.invalid && email.touched" >
+      Your email does not look correct
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+  <br>
+
+  <p class='feedback'>Feedback</p>
+  <mat-radio-group formControlName="feedback">
+    <div class='buttons'><mat-radio-button value='Great'>Great</mat-radio-button></div>
+    <div class='buttons'><mat-radio-button value='Okay'>Okay</mat-radio-button></div>
+    <div class='buttons'><mat-radio-button value='Not so good'>Not so good</mat-radio-button></div>
+  </mat-radio-group>
+
+<br>
+  <p class="comments">Comments</p>
+    <textarea formControlName="comments"></textarea>
+    
+<button mat-raised-button [disabled]="myForm.invalid">Raised</button>
+
+</form>
+
+<div *ngIf="success" class="nottification is-succeess">
+  Yay! We have received your submission
+</div>
+
+<br>
+
+<h3>Data form the server</h3>
+
+Name: {{posts.name}} <br>
+Email: {{posts.email}} <br>
+Feedback: {{posts.feedback}}<br>
+Comment: {{posts.comment}}
